@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import {
+  DashboardOutlined,
+  TeamOutlined,
+  DollarOutlined,
+  BarChartOutlined,
+} from '@ant-design/icons';
 
-function App() {
+import Dashboard from './pages/Dashboard';
+import Customers from './pages/Customers';
+import Payments from './pages/Payments';
+import MonthlyReport from './pages/MonthlyReport'; // Import the MonthlyReport component
+import EditCustomerModal from './components/EditCustomerModal'; // Import the EditCustomerModal component
+
+const { Header, Sider, Content } = Layout;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider breakpoint="lg" collapsedWidth="0">
+          <div className="logo" style={{ height: 32, margin: 16, color: 'white', fontWeight: 'bold' }}>
+            Cable App
+          </div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1" icon={<DashboardOutlined />}>
+              <Link to="/">Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<TeamOutlined />}>
+              <Link to="/customers">Customers</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<DollarOutlined />}>
+              <Link to="/payments">Payments</Link>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<BarChartOutlined />}>
+              <Link to="/report">Monthly Report</Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: 0, textAlign: 'center', fontSize: '1.5rem' }}>
+            Cable Payment Management
+          </Header>
+          <Content style={{ margin: '16px' }}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/payments" element={<Payments />} />
+              <Route path="/report" element={<MonthlyReport />} />
+            </Routes>
+          </Content>
+        </Layout>
+      </Layout>
+    </Router>
   );
-}
+};
 
 export default App;
