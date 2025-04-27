@@ -46,3 +46,7 @@ const EditCustomerModal = ({ visible, onCancel, onUpdate, customer }) => {
 };
 
 export default EditCustomerModal;
+
+
+
+

@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react';
 import { Form, Input, InputNumber, Button, DatePicker } from 'antd';
+import dayjs from 'dayjs';
 
 const CustomerFormModal = ({ onSubmit, initialValues }) => {
     const [form] = Form.useForm();
 
     useEffect(() => {
         if (initialValues) {
-            form.setFieldsValue(initialValues);
+            const updatedInitialValues = { 
+                ...initialValues, 
+                date: initialValues.date ? dayjs(initialValues.date) : null 
+            };
+            form.setFieldsValue(updatedInitialValues);
         } else {
             form.resetFields();
         }
     }, [initialValues, form]);
+    
 
     const onFinish = (values) => {
+        values.date = values.date ? values.date.toISOString() : null;
         onSubmit(values);
         form.resetFields();
     };
@@ -89,3 +96,5 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
 };
 
 export default CustomerFormModal;
+
+

@@ -60,27 +60,24 @@
 // export default Dashboard;
 
 
-
 import React from 'react';
 import { Card, Col, Row, Statistic } from 'antd';
 import { TeamOutlined, DollarOutlined, WarningOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
+import { Container } from 'react-bootstrap'; // React-Bootstrap
 
 const Dashboard = () => {
   const { customarData = [] } = useSelector(state => state.customare) || {};
   const { payments = [] } = useSelector(state => state.payment) || {};
 
-  // Total paid amount calculation from payments
-  const totalPaidAmount = payments.reduce((acc, customer) => {
-    const customerPaid = customer.payments?.reduce((sum, payment) => sum + payment.amount, 0) || 0;
-    return acc + customerPaid;
-  }, 0);
+  console.log("payment slice ", payments); 
+  console.log("customar data slice", customarData);
 
-    // Total Pending Due
-    const totalDueAmount = payments.reduce((total, payment) => {
-      const due = (payment.plan || 0) - (payment.paidAmount || 0);
-      return total + (due > 0 ? due : 0);
-    }, 0);
+  // Total Paid Amount calculation from payments slice
+  const totalPaidAmount = payments.reduce((acc, curr) => acc + (curr.totalPaidAmount || 0), 0);
+
+  // Total Due Amount calculation from payments slice
+  const totalDueAmount = payments.reduce((acc, curr) => acc + (curr.dueAmount > 0 ? curr.dueAmount : 0), 0);
 
   const dashboardStats = [
     {
@@ -102,7 +99,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div style={{ padding: 24 }}>
+    <Container fluid className="py-4">
       <Row gutter={[16, 16]}>
         {dashboardStats.map((stat, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
@@ -117,7 +114,7 @@ const Dashboard = () => {
           </Col>
         ))}
       </Row>
-    </div>
+    </Container>
   );
 };
 
