@@ -70,9 +70,6 @@ const Dashboard = () => {
   const { customarData = [] } = useSelector(state => state.customare) || {};
   const { payments = [] } = useSelector(state => state.payment) || {};
 
-  console.log("payment slice ", payments); 
-  console.log("customar data slice", customarData);
-
   // Total Paid Amount calculation from payments slice
   const totalPaidAmount = payments.reduce((acc, curr) => acc + (curr.totalPaidAmount || 0), 0);
 

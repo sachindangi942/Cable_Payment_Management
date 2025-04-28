@@ -4,22 +4,23 @@ import dayjs from 'dayjs';
 
 const CustomerFormModal = ({ onSubmit, initialValues }) => {
     const [form] = Form.useForm();
-
     useEffect(() => {
         if (initialValues) {
-            const updatedInitialValues = { 
-                ...initialValues, 
-                date: initialValues.date ? dayjs(initialValues.date) : null 
+            const updatedInitialValues = {
+                ...initialValues,
+                date: initialValues.date ? dayjs(initialValues.date) : null
             };
             form.setFieldsValue(updatedInitialValues);
         } else {
             form.resetFields();
         }
     }, [initialValues, form]);
-    
+
 
     const onFinish = (values) => {
+        console.log("onfinish date 1", values.date)
         values.date = values.date ? values.date.toISOString() : null;
+        console.log("onfinish date 2", values.date)
         onSubmit(values);
         form.resetFields();
     };
@@ -29,7 +30,7 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
             form={form}
             layout="vertical"
             onFinish={onFinish}
-            initialValues={initialValues}
+            // initialValues={initialValues}
         >
             <Form.Item label="Date" name="date" rules={[{ required: true }]}>
                 <DatePicker style={{ width: '100%' }} />
@@ -96,5 +97,3 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
 };
 
 export default CustomerFormModal;
-
-

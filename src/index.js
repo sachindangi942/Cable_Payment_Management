@@ -7,16 +7,13 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux"
 import { PersistGate } from 'redux-persist/integration/react';
 import Store, { persister } from './redux/Store';
-import { ErrorBoundary } from 'react-error-boundary';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={Store}>
     <PersistGate loading={null} persistor={persister}>
       <React.StrictMode>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
+        <App />
       </React.StrictMode>
     </PersistGate>
   </Provider>

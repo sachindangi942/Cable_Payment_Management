@@ -4,7 +4,6 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 const CustomerTable = ({ data, onEdit, onDelete, onPaidAmountChange, pagination, setPagination }) => {
-  console.log("data", data)
   const [form] = Form.useForm();
 
   const columns = [
