@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import 'antd/dist/reset.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux"
 import { PersistGate } from 'redux-persist/integration/react';
 import Store, { persister } from './redux/Store';
+import { ConfigProvider } from 'antd';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={Store}>
     <PersistGate loading={null} persistor={persister}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <ConfigProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </ConfigProvider>
     </PersistGate>
   </Provider>
 

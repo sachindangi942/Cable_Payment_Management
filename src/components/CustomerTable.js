@@ -17,10 +17,10 @@ const CustomerTable = ({ data, onEdit, onDelete, onPaidAmountChange, pagination,
       key: 'date',
       render: (text) => text ? dayjs(text).format('DD/MM/YYYY') : 'N/A',
     },
-    { title: 'Name', dataIndex: 'name' },
+    { title: 'Customer Name', dataIndex: 'name' },
     { title: 'Mobile', dataIndex: 'mobile' },
     { title: 'Cart Number', dataIndex: 'cartNumber' },
-    { title: 'Plan', dataIndex: 'plan' },
+    { title: '₹ Plan ', dataIndex: 'plan' },
     {
       title: 'Action',
       render: (_, record) => (
