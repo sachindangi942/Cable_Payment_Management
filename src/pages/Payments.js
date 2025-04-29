@@ -46,7 +46,7 @@ const Payments = () => {
       ...prev,
       total: filteredData.length,
     }));
-  }, [filteredData]);
+  }, []);
 
   const handleTableChange = (pagination) => {
     setPagination(pagination);
