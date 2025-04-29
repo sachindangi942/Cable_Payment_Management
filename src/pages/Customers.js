@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Modal, DatePicker, message } from 'antd';
+import { Button, Modal, DatePicker, notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomerTable from '../components/CustomerTable';
 import CustomerFormModal from '../components/CustomerFormModel';
@@ -18,8 +18,7 @@ const Customers = () => {
     current: 1,
     pageSize: 10
   });
-console.log("dates",dates);
-console.log("redux date", customarData)
+  
   const openModal = (customer = null) => {
     setEditingCustomer(customer);
     setIsModalVisible(true);
@@ -32,36 +31,45 @@ console.log("redux date", customarData)
 
   const handleAddCustomer = (customer) => {
     dispatch(addCustomer(customer));
-    message.success('Customer added successfully!');
+    notification.success({
+      message:"success",
+      description:"Customer added successfully!",
+      placement:"topRight",
+      duration:3
+    });
     closeModal();
   };
 
   const handleUpdateCustomer = (updatedCustomer) => {
     dispatch(editCustomer({ mobile: updatedCustomer.mobile, updatedData: updatedCustomer }));
-    message.success('Customer updated successfully!');
+    notification.success({
+      message:"success",
+      description:"Customer updated successfully!",
+      placement:"topRight",
+      duration:3
+    });
     closeModal();
   };
 
   const handleDeleteCustomer = (mobile) => {
     dispatch(deleteCustomer(mobile));
-    message.success('Customer deleted successfully!');
+    notification.success({
+      message:"success",
+      description:"Customer deleted successfully!",
+      placement:"topRight",
+      duration:3
+    });
   };
 
   const handlePaidAmountChange = (mobile, paidAmount) => {
     dispatch(addPaidAmount({ mobile, paidAmount }));
-    message.success('Payment updated successfully!');
+    notification.success({
+      message:"success",
+      description:"Payment updated successfully!",
+      placement:"topRight",
+      duration:3
+    });
   };
-
-  // 🆕 Filter customers based on date range
-  // const filteredData = dates
-  //   ? customarData.filter((customer) => {
-  //       const customerDate = new Date(customer.lastUpdatedMonth || customer.createdAt);
-  //       return (
-  //         customerDate >= dates[0].toDate() && customerDate <= dates[1].toDate()
-  //       );
-  //     })
-  //   : customarData;
-
 
   const filteredData = useMemo(() => {
     if (!dates) return customarData;

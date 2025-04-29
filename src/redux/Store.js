@@ -3,16 +3,19 @@ import { persistReducer, persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import customareReducer from "./fetures/CustomerSlice"
 import paymentReducer from "./fetures/PaymentSlice"
+import LoadingReducer from "./fetures/LoadingSlice"
 
 
 const persistConfig = {
     key: "root",
-    storage
+    storage,
+    blacklist:["loading"]
 }
 
 const rootReducer = combineReducers({
     customare: customareReducer,
-    payment:paymentReducer
+    payment:paymentReducer,
+    loading:LoadingReducer
 })
 
 const persistReducers = persistReducer(persistConfig, rootReducer);
