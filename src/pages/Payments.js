@@ -28,7 +28,7 @@ const Payments = () => {
 
   useEffect(() => {
     dispatch(updateMonthlyPayments());
-  }, []);
+  }, [dispatch]);
 
   const filteredData = payments.filter((item) => {
     const nameMatch = item.name.toLowerCase().includes(searchText.toLowerCase());
@@ -41,15 +41,18 @@ const Payments = () => {
     return nameMatch && dateMatch && statusMatch;
   });
 
-  useEffect(() => {
-    setPagination(prev => ({
-      ...prev,
-      total: filteredData.length,
-    }));
-  }, []);
+  // useEffect(() => {
+  //   setPagination(prev => ({
+  //     ...prev,
+  //     total: filteredData.length,
+  //   }));
+  // }, []);
 
   const handleTableChange = (pagination) => {
-    setPagination(pagination);
+    setPagination({
+      ...pagination,
+      total:filteredData.length
+    });
   };
 
   const resetFilters = () => {
@@ -167,11 +170,6 @@ const Payments = () => {
 
 export default Payments;
 
-
-
-
-
-// add new search by customer name logic by chtgpt
 
 
 

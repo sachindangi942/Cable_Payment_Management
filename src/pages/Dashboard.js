@@ -22,7 +22,7 @@ const Dashboard = () => {
       icon: <TeamOutlined />,
     },
     {
-      title: "Total Payments (₹)",
+      title: "Pain Amount(₹)",
       value: totalPaidAmount,
       icon: <DollarOutlined />,
     },
