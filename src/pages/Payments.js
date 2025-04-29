@@ -28,7 +28,7 @@ const Payments = () => {
 
   useEffect(() => {
     dispatch(updateMonthlyPayments());
-  }, [dispatch]);
+  }, []);
 
   const filteredData = payments.filter((item) => {
     const nameMatch = item.name.toLowerCase().includes(searchText.toLowerCase());
