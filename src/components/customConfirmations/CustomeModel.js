@@ -9,7 +9,8 @@ export const CustomeModel = ({
   children,
   isEditModalVisible,
   handleUpdateProduct,
-  handleCancelEdit
+  handleCancelEdit,
+  footer
 }) => {
   return (
     <Modal
@@ -19,9 +20,10 @@ export const CustomeModel = ({
       onCancel={isEditModalVisible ? handleCancelEdit : onCancel}
       okText={isEditModalVisible ? "update" : "yes Delete"}
       cancelText="Cancel"
+      footer={footer}
     >
       {children}
-      <p>{description || "Are you sure you want to proceed?"}</p>
+      <p className='text-danger'>{description || "Are you sure you want to proceed?"}</p>
     </Modal>
   );
 };

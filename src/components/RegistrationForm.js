@@ -17,12 +17,12 @@ const RegistrationForm = () => {
     try {
       // Firebase Authentication me user register karna
       dispatch(Loading(true));
-      const userCredential = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         values.email,
         values.password
       );
-      const user = userCredential.user;
+      // const user = userCredential.user;
       dispatch(Loading(false));
       notification.success({
         message: "success",
@@ -31,10 +31,9 @@ const RegistrationForm = () => {
         duration: 3
       })
       // You can store token or user details if needed in localStorage
-      const expiryTime = Date.now() + 1 * 60 * 1000; // 15 min in ms
-      localStorage.setItem("sessionExpiry", expiryTime);
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("userToken", user.accessToken);
+
+      // localStorage.setItem("isLoggedIn", true);
+      // localStorage.setItem("userToken", user.accessToken);
 
       form.resetFields();
       // Redirect to Dashboard

@@ -31,20 +31,21 @@ const LoginForm = () => {
       dispatch(Loading(true));
       const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
       const user = userCredential.user;
-      notification.success({
-        message: "success",
-        description: "Login successfull",
-        placement: "topRight",
-        duration: 3
-      });
-
       // User ko logged in mark karte hain aur token store karte hain
+      const expiryTime = Date.now() + 5 * 60 * 1000; // 15 min in ms
+      localStorage.setItem("sessionExpiry", expiryTime);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userToken", user.accessToken); // Token bhi save kar rahe hain
       form.resetFields();
       dispatch(Loading(false));
       // Redirect to Dashboard after successful login
       navigate("/"); // Ya apni desired page route dena yahan
+      notification.success({
+        message: "success",
+        description: "Login successfull",
+        placement: "topRight",
+        duration: 3
+      });
     } catch (error) {
       dispatch(Loading(false));
       notification.error({
