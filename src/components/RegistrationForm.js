@@ -31,7 +31,9 @@ const RegistrationForm = () => {
         duration: 3
       })
       // You can store token or user details if needed in localStorage
-      // localStorage.setItem("isLoggedIn", true);
+      const expiryTime = Date.now() + 1 * 60 * 1000; // 15 min in ms
+      localStorage.setItem("sessionExpiry", expiryTime);
+      localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("userToken", user.accessToken);
 
       form.resetFields();
@@ -49,7 +51,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '50px auto' }} className='shadow p-4' >
+    <div style={{ margin: '50px auto' }} className='shadow p-4 w-50' >
       {
         loading ? (
           <div style={{ textAlign: 'center', marginTop: '180px' }}>

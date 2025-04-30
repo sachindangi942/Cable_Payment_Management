@@ -33,13 +33,12 @@ const Dashboard = () => {
       valueStyle: { color: '#cf1322' },
     }
   ];
-console.log(loading)
   return (
     <Container fluid className="py-4">
       {
         loading ? (
           <div style={{ textAlign: 'center', marginTop: '180px' }}>
-            <Spin size="large" />
+            <Spin tip="Loading..." size="large" />
           </div>
         ) : (
 

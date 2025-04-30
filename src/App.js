@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, } from 'react-router-dom';
-import {  Layout,} from 'antd';
+import { Layout, } from 'antd';
 import { auth } from './components/firebase'; // Firebase Auth import करें
 
 import Sidebar from './components/Sidebar';
@@ -12,6 +12,8 @@ import Payments from './pages/Payments';
 import MonthlyReport from './pages/MonthlyReport';
 import RegistrationForm from './components/RegistrationForm';
 import LoginForm from './components/LoginForm';
+import ChangePassword from './components/ChangePassword';
+import SessionTimeoutChecker from './components/SessionTimeoutChecker';
 
 
 const { Sider, Content } = Layout;
@@ -37,6 +39,7 @@ const App = () => {
 
   return (
     <Router>
+      <SessionTimeoutChecker/>
       <Layout style={{ minHeight: '100vh' }}>
         {isAuthenticated && (
           <Sider breakpoint="lg" collapsedWidth="0" className='py-3 gap-4'>
@@ -59,6 +62,11 @@ const App = () => {
                 path="/register"
                 element={isAuthenticated ? <Navigate to="/" /> : <RegistrationForm />}
               />
+              <Route
+                path="/changePassword"
+                element={isAuthenticated ? <ChangePassword/> : <Navigate to="/login" />}
+              />
+
               <Route
                 path="/customers"
                 element={isAuthenticated ? <Customers /> : <Navigate to="/login" />}

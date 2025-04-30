@@ -46,7 +46,7 @@ const Sidebar = () => {
     {
       key: '5',
       icon: <SettingOutlined />,
-      label: <Link onClick={handleDrawerOpen}>Setting</Link>
+      label: <Link onClick={handleDrawerOpen}>Settings</Link>
     }
   ];
 

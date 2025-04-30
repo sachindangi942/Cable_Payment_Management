@@ -89,11 +89,6 @@ const Customers = () => {
       return customerDateOnly >= startDateOnly && customerDateOnly <= endDateOnly;
     });
   }, [customarData, dates]);
-  
-
-
-
-
 
   return (
     <div className="p-3">

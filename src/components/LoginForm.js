@@ -73,7 +73,7 @@ const LoginForm = () => {
       {
         loading ? (
           <div style={{ textAlign: 'center', marginTop: '180px' }}>
-            <Spin size="large" tip="Login in...." />
+            <Spin tip="Login in...." size="large" fullscreen />
           </div>
         ) : (
           <Form
