@@ -32,7 +32,7 @@ const LoginForm = () => {
       const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
       const user = userCredential.user;
       // User ko logged in mark karte hain aur token store karte hain
-      const expiryTime = Date.now() + 5 * 60 * 1000; // 15 min in ms
+      const expiryTime = Date.now() + 60 * 60 * 1000; // 15 min in ms
       localStorage.setItem("sessionExpiry", expiryTime);
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userToken", user.accessToken); // Token bhi save kar rahe hain

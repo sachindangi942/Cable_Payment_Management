@@ -41,13 +41,6 @@ const Payments = () => {
     return nameMatch && dateMatch && statusMatch;
   });
 
-  // useEffect(() => {
-  //   setPagination(prev => ({
-  //     ...prev,
-  //     total: filteredData.length,
-  //   }));
-  // }, []);
-
   const handleTableChange = (pagination) => {
     setPagination({
       ...pagination,
@@ -151,7 +144,6 @@ const Payments = () => {
       <PaymentEntryModal
         visible={isModalVisible}
         onAdd={(paymentData) => {
-          console.log("New payment added:", paymentData);
           setIsModalVisible(false);
         }}
         onCancel={() => setIsModalVisible(false)}
