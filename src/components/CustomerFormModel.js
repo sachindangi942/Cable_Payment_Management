@@ -18,9 +18,7 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
 
 
     const onFinish = (values) => {
-        console.log("onfinish date 1", values.date)
         values.date = values.date ? values.date.toISOString() : null;
-        console.log("onfinish date 2", values.date)
         onSubmit(values);
         form.resetFields();
     };

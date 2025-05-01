@@ -16,15 +16,25 @@ const PaymentEntryModal = ({ visible, onAdd, onCancel }) => {
     try {
       const values = await form.validateFields();
       const paymentStatus = payments.find(p => p.cartNumber === values.cartNumber)?.status;
-      console.log(paymentStatus)
-      if (paymentStatus === "Paid"){
+      if (paymentStatus === "Paid") {
         notification.warning({
           message: 'Already Paid',
           description: 'This customer has already completed their payment.',
-          duration:3
+          duration: 3
         });
         return;
-      }
+      } else if (paymentStatus === "Due") {
+        const paymentDues = payments.find(D => D.cartNumber === values.cartNumber)?.dueAmount;
+        if (paymentDues < values.paidAmount) {
+          notification.warning({
+            message: "Extra Amount",
+            description: `Paid amount cannot be more than Due amount ${paymentDues}`,
+            duration: 3,
+            placement: "topRight"
+          });
+          return;
+        }
+      };
       const formattedValues = {
         ...values,
         date: dayjs().format('YYYY-MM-DD'),
@@ -98,7 +108,7 @@ const PaymentEntryModal = ({ visible, onAdd, onCancel }) => {
               const plan = getFieldValue('plan');
               if (value > plan) {
                 notification.warning({
-                  message: "extra amounts",
+                  message: "Extra amounts",
                   description: "Paid amount cannot be more than plan amount",
                   duration: 3,
                   placement: "topRight"
