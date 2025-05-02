@@ -15,20 +15,20 @@ const PaymentEntryModal = ({ visible, onAdd, onCancel }) => {
   const handleAdd = async () => {
     try {
       const values = await form.validateFields();
-      const paymentStatus = payments.find(p => p.cartNumber === values.cartNumber)?.status;
-      if (paymentStatus === "Paid") {
+      const exitsPayment = payments.find(data=>data.cartNumber=== values.cartNumber);
+      console.log("exitsPayment",exitsPayment?.dueAmount)
+      if (exitsPayment?.status === "Paid") {
         notification.warning({
           message: 'Already Paid',
           description: 'This customer has already completed their payment.',
           duration: 3
         });
         return;
-      } else if (paymentStatus === "Due") {
-        const paymentDues = payments.find(D => D.cartNumber === values.cartNumber)?.dueAmount;
-        if (paymentDues < values.paidAmount) {
+      } else if (exitsPayment?.status === "Due") {
+        if (exitsPayment?.dueAmount < values.paidAmount) {
           notification.warning({
             message: "Extra Amount",
-            description: `Paid amount cannot be more than Due amount ${paymentDues}`,
+            description: `Paid amount cannot be more than Due amount ${exitsPayment?.dueAmount}`,
             duration: 3,
             placement: "topRight"
           });
