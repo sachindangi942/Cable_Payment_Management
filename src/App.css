@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,19 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+
+
+  .desboard {
+  margin: 0;
+  padding:12px;
+  background-image: url('./images/backGround.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
 }

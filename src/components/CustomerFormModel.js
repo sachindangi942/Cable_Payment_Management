@@ -19,6 +19,9 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
 
     const onFinish = (values) => {
         values.date = values.date ? values.date.toISOString() : null;
+        if(initialValues?.id){
+            values.id = initialValues.id
+        }
         onSubmit(values);
         form.resetFields();
     };
@@ -77,6 +80,7 @@ const CustomerFormModal = ({ onSubmit, initialValues }) => {
                 label="Paid Amount"
                 name="paidAmount"
                 initialValue={0}
+                hidden
             >
                 <InputNumber
                     placeholder="Enter Paid Amount (optional)"

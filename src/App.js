@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, } from 'react-router-dom';
 import { Layout, } from 'antd';
-import { auth } from './components/firebase'; // Firebase Auth import करें
-
+import { auth } from './components/firebase'; 
 import Sidebar from './components/Sidebar';
 import HeaderBar from './components/HeaderBar';
-
 import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import Payments from './pages/Payments';
@@ -14,6 +12,8 @@ import RegistrationForm from './components/RegistrationForm';
 import LoginForm from './components/LoginForm';
 import ChangePassword from './components/ChangePassword';
 import SessionTimeoutChecker from './components/SessionTimeoutChecker';
+import { ToastContainer } from 'react-toastify';
+import "./App.css"
 
 
 const { Sider, Content } = Layout;
@@ -40,6 +40,7 @@ const App = () => {
   return (
     <Router>
       <SessionTimeoutChecker/>
+      <ToastContainer/>
       <Layout style={{ minHeight: '100vh' }}>
         {isAuthenticated && (
           <Sider breakpoint="lg" collapsedWidth="0" className='py-3 gap-4'>
