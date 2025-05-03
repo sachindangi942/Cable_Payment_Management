@@ -17,11 +17,11 @@ const TextMotion = ({ text }) => {
   return (
     <div
       ref={containerRef}
-      className="d-flex justify-content-center align-items-center overflow-hidden bg-dark py-4 w-50 mx-auto"
+      className="d-flex justify-content-center align-items-center overflow-hidden  py-3 w-50 mx-auto"
     >
       <animated.div
         ref={ref}
-        className="d-inline-block text-white fs-4 fw-bold"
+        className="d-inline-block text-success   fs-4 fw-bolder"
         style={props}
       >
         {text}
