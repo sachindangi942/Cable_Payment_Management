@@ -67,7 +67,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Row, Spin, Statistic } from 'antd';
-import { TeamOutlined, DollarOutlined, WarningOutlined } from '@ant-design/icons';
+import { TeamOutlined, WarningOutlined } from '@ant-design/icons';
 import { Container } from 'react-bootstrap';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../components/firebase';
@@ -114,7 +114,7 @@ const Dashboard = () => {
     {
       title: "Paid Amount (₹)",
       value: totalPaidAmount,
-      icon: <DollarOutlined />,
+      icon: "₹",
     },
     {
       title: "Pending Dues (₹)",
